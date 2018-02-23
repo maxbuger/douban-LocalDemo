@@ -2,7 +2,7 @@
 	<div class="home-view has-header">
 		<sub-nav mold="quickNav"></sub-nav>
 		<list mold="thumbnail" :items="events"></list>
-		<infinite-loading @infinite="onInfinite" ref="infiniteLoading">
+		<infinite-loading @infinite="infiniteHandler">
 			<loading slot="spinner"></loading>
 		</infinite-loading>
 	</div>
@@ -30,9 +30,9 @@ import Loading from '../components/Loading'
 		},
 		methods:{
 			// Using vue-infinite-loading
-			onInfinite () {
+			infiniteHandler ($state) {
 				setTimeout(() => {
-        	this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
+        	$state.loaded()
 				},1000)
 				this.loadMore()
 			},
